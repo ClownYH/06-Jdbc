@@ -8,6 +8,7 @@ public class Application01 {
 
     public static void main(String[] args){
 
+//        Connection con = JDBCTemplate.getConnection(); 이 방법도 가능하다
         Connection con = getConnection();
         System.out.println(con);
         close(con);
