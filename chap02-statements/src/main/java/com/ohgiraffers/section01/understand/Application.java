@@ -1,4 +1,4 @@
-package com.ohgiraffers.understand;
+package com.ohgiraffers.section01.understand;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

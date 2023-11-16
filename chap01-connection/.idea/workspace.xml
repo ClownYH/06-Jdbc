@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e278c3c5-26bb-4128-8dd0-45a8b3438578" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section02/template/Application01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/section02/template/Application01.java" afterDir="false" />
-    </list>
+    <list default="true" id="e278c3c5-26bb-4128-8dd0-45a8b3438578" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/dev/06-Jdbc/chap01-connection",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,6 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1700016690753</updated>
       <workItem from="1700016691759" duration="8790000" />
+      <workItem from="1700039694021" duration="522000" />
     </task>
     <servers />
   </component>
