@@ -5,10 +5,7 @@ import com.ohgiraffers.section02.model.DTO.MenuDTO;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 import static com.ohgiraffers.common.JBCTemplate.*;
 public class MenuDAO { // DateAccessObject
@@ -49,12 +46,12 @@ public class MenuDAO { // DateAccessObject
     public List<Map<Integer, String>> selectAllCategory(Connection con){
         Statement stmt = null;
         ResultSet rset = null;
-        List<Map<Integer, String>> categoryList = null;
+        List<Map<Integer, String>> categoryList = new ArrayList<>();
         String query = prop.getProperty("selectAllCategoryList");
         try {
             stmt = con.createStatement();
             rset = stmt.executeQuery(query);
-            if(rset.next()){ // if냐 while이냐는 동작에 문제 없으나 메모리 낭비를 하냐 안하냐 이다
+            while(rset.next()){ // if냐 while이냐는 동작에 문제 없으나 메모리 낭비를 하냐 안하냐 이다
                 Map<Integer, String> category = new HashMap<>();
 
                 category.put(rset.getInt("CATEGORY_CODE"), rset.getString("CATEGORY_NAME")); // 키, 밸류

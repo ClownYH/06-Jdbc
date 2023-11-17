@@ -9,6 +9,8 @@ public class MenuDTO {
     private String categoryCode;
     private String status;
 
+    public MenuDTO() {}
+
     public MenuDTO(String menuName, int price, String categoryCode, String status) {
         this.menuName = menuName;
         this.price = price;

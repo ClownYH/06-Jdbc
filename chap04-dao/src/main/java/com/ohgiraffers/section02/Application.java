@@ -19,6 +19,8 @@ public class Application {
             int choice = scanner.nextInt();
             switch(choice){
                 case 1 : menu.findMaxCode(); break;
+                case 2 : menu.findCategory(); break;
+                case 3 : menu.insertMenu(); break;
                 default: break loop;
             }
         }
