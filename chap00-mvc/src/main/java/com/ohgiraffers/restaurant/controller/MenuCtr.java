@@ -64,9 +64,8 @@ public class MenuCtr {
 
         if(result <= 0){
             return "등록 중 오류가 발생했습니다.";
-        }else {
-            return "등록이 완료되었습니다.";
         }
+        return "등록이 완료되었습니다.";
     }
 
     public int deleteMenu(int code){

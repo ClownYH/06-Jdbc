@@ -11,7 +11,7 @@
         SELECT
             CATEGORY_CODE
         FROM
-            TBL_MENU
+            TBL_CATEGORY
     </entry>
     <entry key="insertMenu">
         INSERT INTO TBL_MENU(
@@ -22,7 +22,7 @@
             ORDERABLE_STATUS
         )
         VALUES(
-            ?,
+            NULL,
             ?,
             ?,
             ?,
