@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MenuView {
+public class MenuView { // 오직 사용자의 입력만 받으며 해당 기능의 메소드를 실행한다.
 
     /*
      * view 계층을 예시로 만듦
@@ -32,14 +32,16 @@ public class MenuView {
                 case 1 : viewMenu(menuCtr.findAllMenu()); break;
 
                 // 2-2 : 메뉴 수정
-                case 2 : break;
+                case 2 :
+                    System.out.println(menuCtr.modifyMenu(targetMenu(), changeMenu())); break;
 
                 // 2-3 : 메뉴 등록
                 case 3 :
                     System.out.println(menuCtr.registMenu(registMenu())); break;
 
                 // 2-4 : 메뉴 삭제
-                case 4 : break;
+                case 4 :
+                    System.out.println(menuCtr.deleteMenu(deleteMenu())); break;
 
                 // default : 프로그램 종료
                 default: break 프로그램;
@@ -76,5 +78,50 @@ public class MenuView {
 
         // 일반적으로 front에서 js를 이용하여 1차 유용성 검사를 진행한다.
         return newMenu;
+    }
+
+    public static String targetMenu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("====================================");
+        System.out.println("변경하고자 하는 메뉴를 입력하세요.");
+        String target = scanner.next();
+        return target;
+    }
+
+    public static MenuDTO changeMenu(){
+        MenuDTO newMenu = new MenuDTO();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("변경할 이름을 입력하세요.");
+        newMenu.setMenuName(scanner.nextLine());
+        System.out.println("변경할 가격을 입력하세요.");
+        newMenu.setPrice(scanner.nextInt());
+        System.out.println("변경할 카테고리를 입력하세요.");
+        newMenu.setCategory(scanner.next());
+        System.out.println("변경할 판매여부를 입력하세요.");
+        newMenu.setStatus(scanner.next());
+
+        return newMenu;
+    }
+
+    public static MenuDTO deleteMenu(){
+        MenuDTO deleteMenu = new MenuDTO();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("삭제 기능을 수행하시겠습니까?(y/n)");
+            String choice = scanner.next();
+            if (choice.equals("y")){
+                System.out.println("삭제하고자 하는 메뉴의 이름을 입력해주세요.");
+                deleteMenu.setMenuName(scanner.next());
+                break;
+            }else if(choice.equals("n")){
+                System.out.println("삭제 기능을 중지합니다.");
+                break;
+            }else {
+                System.out.println("다시 입력해주세요.");
+                System.out.println("===============================");
+            }
+        }
+        return deleteMenu;
     }
 }

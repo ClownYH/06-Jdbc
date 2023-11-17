@@ -6,6 +6,7 @@ import com.ohgiraffers.restaurant.service.MenuService;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 /*
 * 사용자의 요청을 받아
@@ -32,9 +33,35 @@ public class MenuCtr {
         return list;
     }
 
-    public int modifyMenu(int code){
-        System.out.println("modify code : " + code);
-        return 0;
+    public String modifyMenu(String menuName, MenuDTO menuDTO){
+        if(Objects.isNull(menuDTO)){
+            return "변경할 내용이 없습니다.";
+        }
+
+        if(menuDTO.getMenuName() == null || menuDTO.getMenuName().equals("")){
+            return " 변경할 메뉴 이름을 등록해주세요.";
+        }
+
+        if(menuDTO.getPrice() <= 0){
+            return "변경할 메뉴 가격은 음수일 수 없습니다.";
+        }
+
+        if(menuDTO.getCategory() == null ||menuDTO.getCategory().equals("")){
+            return "변경할 카테고리는 필수!";
+        }
+
+        if(menuDTO.getStatus() == null ||menuDTO.getStatus().equals("")){
+            return "변경할 판매여부를 등록해주세요.";
+        }
+
+        // 유효성 검사 종료 후
+        int result = menuService.modifyMenu(menuName, menuDTO);
+
+        if(result == 0){
+            return "잘못된 변경입니다. 다시 시도해주세요.";
+        }
+
+        return "메뉴가 변경되었습니다.";
     }
 
     public String registMenu(MenuDTO menuDTO){
@@ -68,8 +95,18 @@ public class MenuCtr {
         return "등록이 완료되었습니다.";
     }
 
-    public int deleteMenu(int code){
-        System.out.println("code : " + code);
-        return 0;
+    public String deleteMenu(MenuDTO menuDTO) { // 유효성을 어떻게 검사하지?
+        if(Objects.isNull(menuDTO) || menuDTO.getMenuName().equals("")){
+            return "삭제할 대상의 이름이 입력되지 않았습니다.";
+        }
+        int result = menuService.deleteMenu(menuDTO);
+
+        if(result < 0){
+            return "삭제되지 않았습니다.";
+        }
+
+        return "정상적으로 삭제되었습니다.";
     }
 }
+
+

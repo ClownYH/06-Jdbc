@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import static com.ohgiraffers.restaurant.common.JDBCTemplate.*;
-public class MenuService {
+public class MenuService { // 컨트롤에서 전달받은 값과 데이터베이스 연결 시도를 DAO로 전달해 결과를 도출한 후 다시 컨트롤로 반환한다.
 
     private MenuDAO menuDAO;
 
@@ -41,6 +41,20 @@ public class MenuService {
         int result = menuDAO.registMenu(con, menuDTO);
 
         close(con);
+
+        return result;
+    }
+
+    public int modifyMenu(String menuName, MenuDTO menuDTO){
+        Connection con = getConnection();
+        int modifiedMenu = menuDAO.targetMenu(con, menuName, menuDTO);
+
+        return modifiedMenu;
+    }
+
+    public int deleteMenu(MenuDTO menuDTO){
+        Connection con = getConnection();
+        int result = menuDAO.deleteMenu(con, menuDTO);
 
         return result;
     }

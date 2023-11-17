@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 import static com.ohgiraffers.restaurant.common.JDBCTemplate.*;
 
-public class MenuDAO {
+public class MenuDAO { // service에서 받은 값을 통해 데이터베이스에 쿼리를 전달해 명령을 수행한 후 해당 동작에 대한 성공 여부를 값으로 치환해 반환한다.
     Properties prop = new Properties();
 
     public MenuDAO(String url) {
@@ -86,6 +86,47 @@ public class MenuDAO {
             } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            close(pstmt);
+        }
+        return result;
+    }
+
+    public int targetMenu(Connection con, String menuName, MenuDTO menuDTO){
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            pstmt = con.prepareStatement(prop.getProperty("modifyMenu"));
+            pstmt.setString(1, menuDTO.getMenuName());
+            pstmt.setInt(2, menuDTO.getPrice());
+            pstmt.setString(3, menuDTO.getCategory());
+            pstmt.setString(4, menuDTO.getStatus());
+            pstmt.setString(5, menuName);
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+
+    public int deleteMenu(Connection con, MenuDTO menuDTO){
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            pstmt = con.prepareStatement(prop.getProperty("deleteMenu"));
+            pstmt.setString(1, menuDTO.getMenuName());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
             close(pstmt);
         }
         return result;
